@@ -1,0 +1,13 @@
+[project]
+name = "sbc"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.14"
+dependencies = [
+    "ipywidgets>=8.1.8",
+    "jupyterlab>=4.4.10",
+    "matplotlib>=3.10.7",
+    "networkx>=3.6.1",
+    "pandas>=2.3.3",
+    "scikit-learn>=1.8.0",
+]
