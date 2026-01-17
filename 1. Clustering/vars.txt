@@ -1,0 +1,24 @@
+ID
+
+Numerical:
+    Year_Birth / Age
+    Income
+    Dt_Customer / Antiguedad
+    Recency
+
+    MntWines/Fruits/MeatProducts/FishProducts/SweetProducts/GoldProds
+
+    NumDealsPurchases
+    NumWeb/Catalog/StorePurchases
+    NumWebVisitsMonth
+
+Categories
+    Education
+    MaritalStatus
+    Kidhome
+    Teenhome
+    Complain (Boolean)
+
+    AcceptedCMP1-5 (Boolean)
+    Response
+

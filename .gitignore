@@ -1,0 +1,15 @@
+# --- Python Basics ---
+__pycache__/
+*.py[cod]
+.venv/
+
+# --- PyCharm / IDE Settings (Ignore these!) ---
+.idea/
+*.iml
+*.iws
+*.ipr
+misc.xml
+modules.xml
+
+# --- Jupyter Notebook Checkpoints ---
+.ipynb_checkpoints/
