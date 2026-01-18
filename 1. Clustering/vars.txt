@@ -1,9 +1,9 @@
 ID
 
 Numerical:
-    Year_Birth / Age
+    Year_Birth -> Age
     Income
-    Dt_Customer / Antiguedad
+    Dt_Customer -> Antiguedad
     Recency
 
     MntWines/Fruits/MeatProducts/FishProducts/SweetProducts/GoldProds
@@ -11,14 +11,30 @@ Numerical:
     NumDealsPurchases
     NumWeb/Catalog/StorePurchases
     NumWebVisitsMonth
+    + Total_Spend
 
 Categories
     Education
     MaritalStatus
     Kidhome
     Teenhome
+    + Children_Total
     Complain (Boolean)
 
     AcceptedCMP1-5 (Boolean)
+    + Total_Accepted_Cmp
     Response
 
+# Grupo A: Perfil Cliente
+vars_num_perfil = ['Age', 'Income', 'Children_Total', 'Recency', 'Antiguedad']
+vars_cat_perfil = ['Education', 'Marital_Status', 'Kidhome', 'Teenhome', 'Complain']
+
+# Grupo B: Productos
+vars_num_productos = ['Total_Spend', 'MntWines', 'MntFruits', 'MntMeatProducts', 'MntFishProducts',
+                  'MntSweetProducts', 'MntGoldProds']
+# Grupo C: Promociones
+vars_num_promo = ['Total_Accepted_Cmp', 'NumDealsPurchases']
+vars_cat_promo = ['AcceptedCmp1', 'AcceptedCmp2', 'AcceptedCmp3', 'AcceptedCmp4', 'AcceptedCmp5', 'Response']
+
+# Grupo D: Canales
+vars_num_canales = ['NumWebPurchases', 'NumCatalogPurchases', 'NumStorePurchases', 'NumWebVisitsMonth']

@@ -8,8 +8,7 @@ __pycache__/
 *.iml
 *.iws
 *.ipr
-misc.xml
-modules.xml
+*.xml
 
 # --- Jupyter Notebook Checkpoints ---
 .ipynb_checkpoints/
