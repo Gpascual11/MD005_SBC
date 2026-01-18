@@ -1,0 +1,67 @@
+Datos de entrada con features que los queremos etiquetar por categoria/classe.
+No es continua (regresion), es discreta.
+Importante entrenamiento para poder clasificar bien.
+
+	No supervisado: NO hay etiquetas, no groundtruth.
+	Supervisado: Ya sabemos las clases/labels de los datapoints.
+	
+	Binaria: Una clase u otra. Regresion logistica, arboles, knn...
+	Multiclase: >2 grupos (incluso de un mismo datapoint). Arboles, knn, support vector machines.
+	Multiobjetivo: Diferentes clasificaciones diferentes a la vez.
+	
+	Segmentacion: De una imagen detectar que pixeles pertenecen a diferentes cosas. Multilabel
+	
+	Regresion logistica: importante el threshold/valor limite que decidimos si es una clase u otra.
+	Problema si es binario se pueden producir diferentes valores de 0/1 (Sigmoide + discretizar).
+	Función de coste: calculamos el error comparandolo con el groundtruth. Queremos iterar hasta que reduzcamos el error lo maximo posible. Por ejemplo usando el back-propagation.
+	 
+	 Bo (Intercepto)- Representa el logaritmo de los odds cuando todos los predictores son cero. Punto de partida del modelo. 
+	 Bp (Coeficientes)- Como cambia la probabilidad que el resultado sea 1 cuando aumentamos en 1 unidad ese predictor especifico, sin cambiar los demas predictores.
+	 
+	 Cuando y porque:
+	 	- Es muy interpretable (ej. coeficiente mas alto -> mas importante).
+	 	- Como mas separadas son las clases - mas accuracy tiene el modelo. Datapoint muy similares mal.
+	 	- Computo muy bajo.
+	 	- Ni que el resultado es discreto se puede obtener un porcentaje.
+	 	- No asume normalidad, no hace falta que normalizemos todas las variables porque el modelo ya es robusto.
+	 	
+	 Porque no:
+	 	- Data points juntos mal, depende mucho de la separabilidad lineal.
+	 	- Tener muchas variables de entrada -> dificulta el funcionamiento del algoritmo + mas necesidad de computo (se puede aplicar PCA i UMAP para bajar la dimensionalidad.
+	 	
+	 Recall: Dirli a una persona que no te cancer quan si que en te. Molt important en medicina. 
+	 Primer que fem quan mirem els errors -> mirar el threshold i/o aplicar data augmentation.
+	 
+	 Maquina de Soporte Vectorial (SVM)-  Algoritmo de Machine Learning. Pot ser tant de regressio com clasificacio. 
+	 Modelo que representa datapoints en el espacio. Mediante un hiperplano (extension de un plano en 2d) de separacion. 
+	 Los datapoints que estan mas cerca del hiperplano son los suport vectors. (EN el training acura el hiperplano). Coje los suport vectors (los que estan justos en el plano que separa en margin) dicen hasta aqui llega una clase hasta aqui llega la otra, como un treshold.
+	 
+	 Problema: Nunca tendremos datos tan perfectos para que la division sea correcta, es irreal. Nunca tendremos clases que se pueden separar linealmente -> No se aplica hard margin (hay que dar un margen al error, lose function)
+	 Soft Margin: Permitimos que algunos de los data points tengan un error, se entrena igualmente con este error. Se usa mucho para calcular los support vectors. Permite maximizar mientras penalizamos el error, pero terminamos la computacion.
+	 
+	 
+	 Funcion Kernel: Funcion matematica que permite hacer un mapping de los datos de una dimension que es muy compleja en una que no lo sea tanto i al reves. Asi el support vector pasa a ser un diferenciador no lineal.
+	 
+	 - Kernel lineal, - polinomico (max 2,3,4 dim) , - gaussian (mas utilizado, RBF), - sigmoidal
+	 
+	 
+	- Clasificacion multiclase: Arboles de decision i KNN.
+	 
+	- Arboles: Miramos cuando de puros son los nodos, si es impuro lo partimos (con condiciones) hasta tener uno puro. 
+	Un trade-off de los arboles es que se pueden hacer enormes, hay que poner las condiciones exactas, sino liada.
+	Algoritmos de prunning elimina nodos y los simplificas.
+	
+	Primero empezamos a clasificar por lo mas puro, y vamos hacia lo que menos lo es.
+	
+	Problema de Overfitting
+	
+	
+	- KNN: Datapoint a una clase, porque se parece a otros datapoints de la misma clase (Calculos de distancia).
+	
+	- Distancia: Euclidiana/Manhattan/Correlación/Coseno
+	 Coseno: distancia muy robusta al mapeo de texto a numerico. Transfomer- base de large language models, cuando codificamos de texto a numero tambien se usa el coseno.
+	 
+	 Necessita recursos computacionales muy grandes.
+	 No reacciona bien al ruido (outliers)
+	 Dependes mucho de escojer la funcion de distancia correcta.
+	 Tiene muy poca explicabilidad.
