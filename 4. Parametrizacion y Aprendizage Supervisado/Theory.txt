@@ -1,0 +1,100 @@
+SVM- GAMA, C, POLINOMIO
+
+Model (Fine) Tuning - Proceso para identificar los parametros optimos de un modelo
+	- Enfoques iterativos pero con aproximacion.
+
+Cross-Validation: 
+	- Cross-Fold Validation / Stratified K-Fold: El mas usado de normal
+	- LeaveOneOut-CV: Se usa para un subset que queramos ver como funciona. Ya que su coste computacional es muy alto.
+	
+Bootstrapping: Hacemos sampling by replacements y obtenemos datapoints repetidos. Asi podemos entrerar los modelos con subsets diferentes.
+
+Exhaustive Search: 
+	- Grid Search (Mas usado): Bucle con todos los parametros y todas las combinaciones. Hay que tener en cuenta la matriz de parametros. MALA ESCALABILIDAD. No garantiza encontrar el resultado optimo, solo la mejor combinación de la matriz.
+	- Random Search: No itera, coje valores aleatorios de la array. Dependemos de la aleatoriedad. Menos recursos que antes ya que no comprobamos todo. Podemos usar CrossValidation para mejorar.
+	- Population Based: Explora muchas soluciones al mismo tiempo (No paraleliza pero es mucho mas optimo). 
+		Cada solucion se evalua usando una función fitness.
+		
+Genetic Algorithm:
+	Trabajamos con poblacion de individuos, cada uno representa una solución factible a determinado problema. Cada individuo le asignamos un valor un puntuacion relacionada con la funcion de fitness.
+	Seleccion (el que quiero), Recombinacion (combinar dos individuos muy buenos para tener uno mejor), Mutacion (juntar individuos malos para si al juntarlos sale bien).
+	Es muy simple de aplicar y normalmente mejor que randomsearch / gridsearch.
+	Se puede usar conjuntamente con otros algoritmos de clasificacion.
+	Son muy robustos.
+	
+OBJETIVO: Seleccionar la mejor combinacion de individuos.
+
+	1. Poblacion Inicial (Todo el conjunto de parametros inicial)
+	2. Creamos funcion de fitness
+	3. Seleccionamos los mejores
+		3.1 Hacemos Crossover (merging)
+		3.2 O los mutamos (Cambiamos pequeño parametro para la siguiente iteracion)
+	4. Calculamos fitness
+	5. Optimizamos seleccion de parametros
+		5.1 Reemplazamos la poblacion -> 3.
+	6. Final
+	
+MODELO GENERACIONAL (mas facil, es un replacement) / ESTACIONARIO (mas dificl pero mas preciso)
+
+Mas usada es la Seleccion por torneo (TS)
+
+FENOTIPO / FUNCION DE FITNESS (Mas importantes del algoritmo genetico)
+Funcion de fitness va mas ligada al tipo de fenotipo que tenemos. Depende mucho del caso de uso.
+
+Normalmente la mutacion solo se aplica a un gen, asi podemos saber que pasa y la podemos revertir si es mala. Mas de un gen solo (2,3) si la dimensionalidad de los datos es muy grande.
+
+Estrategia de Reemplazo:
+	- Torneo Restringido: Se reemplaza el mas parecido.
+	- Peor entre semejantes: Reemplazamos el peor cromosoma del conjunto.
+	- Algoritmo Crowding Deterministico: En lugar de cargarme el padre i los hijos, si el hijo es mal me cargo a uno de sus padres.
+	
+METODO DE BAYES
+
+	Quiero modelar un proceso gausiano con un conjunto de muestras que ya tengo para maximizar el rendimiento. 
+	
+	La escalabilidad no es buena, no garantiza encontrar el local minima. El coste computacional es mejor que GridSearch, ya que hace una aproximacion, no mira todos los parametros. Mas como RandomSearch porque es random pero mejor que el.
+	
+	
+	SI TENEMOS EL MISMO VALOR EN GRID SEARCH I RANDOM SEARCH -> Llegar al local minima es muy facil, porque el dataset lo permite.
+	
+	
+TREE-STRUCTURED PARZEN ESTIMATOR
+	Algoritmo de optimización bayesiana que selecciona hiperparámetros maximizando la probabilidad de mejora esperada, usado en Optuna y Hyperopt.
+	Probabilidad de que x me pase un treshold... Y sigue optimizando el punto que me da esto. Favoreze muchas configuraciones buenas y pocas de malas.
+	Permite trabajar con variables categoricas, espacios no continuos, estructuras jerarquicas (condicionales).
+	Es escalable.
+	
+SEQUENTIAL MODEL-BASED ALGORITHM CONFIGURATION
+	Algoritmo de optimizacion sequencial (no bayes), diseñado para algortimos complejos de ML. XBOOST, CATBOOST...
+	Crea un modelo substituto que intenta adivinar que tan bien funcionara cualquier nueva configuracion sin tener que probarla. Utiliza RF para hacer interpolacion de los parametros mejores.
+	Este solo predice la configuracion de los hiperparametros, sin utilizar el algoritmo que queremos utilizar.
+	Despues ya usamos el modelo con los parametros correctos.
+	Este ya es escalable.
+	
+MULTI-FIDELITY OPTIMIZATION
+
+SHA - Encontrar la mejor optimizacion pero con el presupuesto limitado. 
+	Gastar menys memoria, temps o menys dades per calcular els valors optims.
+	Subconjuntos pequeños para decir despues en profundidad cual seran los mejores.
+	
+	1. Probar muchas configuraciones de forma rapida i barata. Muy pocas epochs o muy pocos datos.
+	2. Me quedo solo con los parametros que funcionan mejor en este entorno.
+	3. A estos parametros le subo los recursos para ir mas profundo y seleccionar el mas profundo.
+	4. Y asi recursivamente.
+	
+HYPERBAND
+	Mejora del SHA. Usa SHA.
+	Si nos equivocamos
+	
+SELECCION DE MODELOS
+
+AutoML
+	Automatiza tareas complejas para elegir el modelo.
+	
+MLOps
+	Workflow
+	Data Acquisition & Preparation - Dataset Versioning (DBC, MLGit)
+	Feature Engineering
+	Model Training & Evaluation (MLFlow versiona modelo, experimentos y puedes hacer tracking y hace packaging, empaqueta registros y crea endpoints sin tener todo el modelo) (Waits&Biased)
+	Model Deployment & Serving (Cloud or Edge, cualquier new for factor)
+	Model Monitoring (Responsible AI, biased and fearness)

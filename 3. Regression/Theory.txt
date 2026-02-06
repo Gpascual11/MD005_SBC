@@ -1,0 +1,16 @@
+REGRESSIO LOGISTICA
+
+R² -> 0 si no sajusta, 1 si sajusta a la perfecció. Es molt important perqué en comptes del gini amb els arbres fem servir aixo 
+
+bootstraping -> 
+
+Overfitting-> Sobreajustament
+
+Pruning-> Tengo un monton de ramas i corto las que no me sirven para nada o se puede hacer merge con otras
+	Pre-Pruning 
+	Post-Pruning
+	Error-Based pruning -> Elimina las ramas con mse mas alto. Elimina els nodes si el error no augmenta (Detecta si son useless, ja esta replicada dins l'arbre que em queda)
+	alpha-pruning
+	
+
+
