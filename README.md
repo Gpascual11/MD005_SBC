@@ -20,18 +20,6 @@ The goal of this repository is to:
 
 ## Repository Structure
 
-### 0. Algorithms
-
-Foundational algorithms used throughout the course.
-
-Includes:
-
-* Distance metrics
-* Optimization concepts
-* Supporting utilities for ML workflows
-
----
-
 ### 1. Clustering
 
 Unsupervised learning techniques for pattern discovery and segmentation.
@@ -99,14 +87,7 @@ Covered concepts:
 
 ### 6. Final Project
 
-Integration of knowledge acquired during the course.
-
-This section focuses on:
-
-* End-to-end ML workflow
-* Data preprocessing
-* Model training and validation
-* Result interpretation
+Project of Gaussian Mixture Model (GMM)
 
 ---
 
@@ -150,3 +131,4 @@ This section focuses on:
   * Distributed Systems
   * ETL Pipelines
   * Cloud Architectures
+
